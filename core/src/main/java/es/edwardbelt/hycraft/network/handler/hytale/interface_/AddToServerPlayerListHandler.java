@@ -2,9 +2,12 @@ package es.edwardbelt.hycraft.network.handler.hytale.interface_;
 
 import com.hypixel.hytale.protocol.packets.interface_.AddToServerPlayerList;
 import com.hypixel.hytale.protocol.packets.interface_.ServerPlayerListPlayer;
+import es.edwardbelt.hycraft.HyCraft;
 import es.edwardbelt.hycraft.network.MinecraftServerBootstrap;
 import es.edwardbelt.hycraft.network.handler.PacketHandler;
+import es.edwardbelt.hycraft.network.handler.minecraft.data.profile.Property;
 import es.edwardbelt.hycraft.network.player.ClientConnection;
+import es.edwardbelt.hycraft.network.skin.SkinTranslator;
 import es.edwardbelt.hycraft.protocol.packet.play.PlayerInfoUpdatePacket;
 
 import java.util.*;
@@ -25,7 +28,11 @@ public class AddToServerPlayerListHandler implements PacketHandler<AddToServerPl
             if (playerConnection != null) {
                 playerInfo.properties = playerConnection.getProfile().getProperties();
             } else {
-                playerInfo.properties = new ArrayList<>();
+                List<Property> props = new ArrayList<>();
+                if (HyCraft.get().getConfigManager().getMain().isSkinHytaleToMc()) {
+                    props = SkinTranslator.get().buildMcSkinProperties(player.uuid);
+                }
+                playerInfo.properties = props;
             }
 
             playerInfos.add(playerInfo);
