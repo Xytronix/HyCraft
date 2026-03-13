@@ -91,7 +91,7 @@ public class BlockBreakManager {
         RootInteraction interaction = RootInteraction.getAssetMap().getAsset(interactionId);
         if (interaction == null || interaction.getCooldown() == null) return DEFAULT_DAMAGE_INTERVAL_MS;
 
-        return (long) interaction.getCooldown().cooldown;
+        return (long) (interaction.getCooldown().cooldown * 1000);
     }
 
     private void applyBlockDamage(ClientConnection connection, BlockBreakTracker tracker,
