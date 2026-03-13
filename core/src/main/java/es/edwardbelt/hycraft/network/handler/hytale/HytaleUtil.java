@@ -62,7 +62,7 @@ public class HytaleUtil {
     }
 
     public static void createPlayer(ClientConnection connection) {
-        UUID uuid = connection.getUuid();
+        UUID uuid = connection.getHytaleUuid();
         String username = connection.getUsername();
 
         try {

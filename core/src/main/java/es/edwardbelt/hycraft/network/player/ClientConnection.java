@@ -51,6 +51,7 @@ public class ClientConnection implements HyCraftConnection {
     private GameProfile profile;
     private String username;
     private UUID uuid;
+    private UUID hytaleUuid;
     private int protocolVersion;
     private int networkId;
     private ChunkBuffer chunkBuffer;
@@ -112,7 +113,7 @@ public class ClientConnection implements HyCraftConnection {
     }
 
     public PlayerRef getPlayerRef() {
-        return Universe.get().getPlayer(uuid);
+        return Universe.get().getPlayer(hytaleUuid);
     }
 
     public void addSpawnedEntity(int id, Entity entity) {

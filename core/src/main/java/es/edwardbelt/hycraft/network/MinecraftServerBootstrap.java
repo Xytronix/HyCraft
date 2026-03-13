@@ -1,19 +1,24 @@
 package es.edwardbelt.hycraft.network;
 
-import com.hypixel.hytale.server.core.io.netty.NettyUtil;
-import es.edwardbelt.hycraft.HyCraft;
-import es.edwardbelt.hycraft.network.handler.minecraft.MinecraftHandlerRegistry;
-import es.edwardbelt.hycraft.network.handler.hytale.HytaleHandlerRegistry;
-import es.edwardbelt.hycraft.network.player.ClientConnection;
-import es.edwardbelt.hycraft.util.Logger;
-import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.*;
-import lombok.Getter;
-
 import java.net.InetSocketAddress;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
+
+import com.hypixel.hytale.server.core.io.netty.NettyUtil;
+
+import es.edwardbelt.hycraft.HyCraft;
+import es.edwardbelt.hycraft.network.handler.hytale.HytaleHandlerRegistry;
+import es.edwardbelt.hycraft.network.handler.minecraft.MinecraftHandlerRegistry;
+import es.edwardbelt.hycraft.network.player.ClientConnection;
+import es.edwardbelt.hycraft.util.Logger;
+import io.netty.bootstrap.ServerBootstrap;
+import io.netty.channel.Channel;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelOption;
+import io.netty.channel.EventLoopGroup;
+import io.netty.channel.ServerChannel;
+import lombok.Getter;
 
 public class MinecraftServerBootstrap {
     private static MinecraftServerBootstrap INSTANCE;
@@ -121,8 +126,8 @@ public class MinecraftServerBootstrap {
     }
 
     public void removeConnection(ClientConnection connection) {
-        if (connection.getUuid() == null) return;
-        playerToConnection.remove(connection.getUuid());
+        if (connection.getHytaleUuid() == null) return;
+        playerToConnection.remove(connection.getHytaleUuid());
         channelToConnection.remove(connection.getChannel());
     }
 

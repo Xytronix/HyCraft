@@ -40,9 +40,17 @@ public class EncryptionResponseHandler implements PacketHandler<EncryptionRespon
 
             String hytaleUsername = HyCraft.get().getConfigManager().getMain().getPlayerPrefix() + connection.getPendingUsername();
 
-            MinecraftServerBootstrap.get().setConnection(uuid, connection);
+            UUID hytaleUuid;
+            if (HyCraft.get().getConfigManager().getMain().isSeparatePlayerUuids()) {
+                hytaleUuid = UUID.nameUUIDFromBytes(("hycraft:" + uuid).getBytes());
+            } else {
+                hytaleUuid = uuid;
+            }
+
             connection.setUuid(uuid);
+            connection.setHytaleUuid(hytaleUuid);
             connection.setUsername(hytaleUsername);
+            MinecraftServerBootstrap.get().setConnection(hytaleUuid, connection);
 
             GameProfile profile = new GameProfile(uuid, connection.getUsername());
             String[] skin = UUIDUtil.getSkinByUUID(uuid);
