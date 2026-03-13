@@ -56,8 +56,10 @@ public class PacketRegistry {
         register(6, ConnectionState.PLAY, PacketDirection.SERVERBOUND, "ChatCommand", ChatCommandPacket.class);
         register(8, ConnectionState.PLAY, PacketDirection.SERVERBOUND, "Chat", ChatMessagePacket.class);
         register(8, ConnectionState.PLAY, PacketDirection.CLIENTBOUND, "BlockUpdate", BlockUpdatePacket.class);
+        register(9, ConnectionState.PLAY, PacketDirection.SERVERBOUND, "ClientStatus", ClientStatusPacket.class);
         register(11, ConnectionState.PLAY, PacketDirection.SERVERBOUND, "ClientCommand", ClientCommandPacket.class);
         register(12, ConnectionState.PLAY, PacketDirection.SERVERBOUND, "TickEnd", ClientTickEndPacket.class);
+        register(13, ConnectionState.PLAY, PacketDirection.SERVERBOUND, "PlayerSession", PlayerSessionPacket.class);
         register(16, ConnectionState.PLAY, PacketDirection.CLIENTBOUND, "Commands", CommandsPacket.class);
         register(17, ConnectionState.PLAY, PacketDirection.SERVERBOUND, "ContainerClick", ClickContainerPacket.class);
         register(17, ConnectionState.PLAY, PacketDirection.CLIENTBOUND, "CloseContainer", CloseContainerPacket.class);
@@ -78,6 +80,7 @@ public class PacketRegistry {
         register(41, ConnectionState.PLAY, PacketDirection.SERVERBOUND, "PlayerCommand", PlayerCommandPacket.class);
         register(41, ConnectionState.PLAY, PacketDirection.CLIENTBOUND, "HurtAnimation", HurtAnimationPacket.class);
         register(42, ConnectionState.PLAY, PacketDirection.SERVERBOUND, "PlayerInput", PlayerInputPacket.class);
+        register(43, ConnectionState.PLAY, PacketDirection.SERVERBOUND, "Pong", PongPacket.class);
         register(43, ConnectionState.PLAY, PacketDirection.CLIENTBOUND, "KeepAlive", KeepAlivePacket.class);
         register(44, ConnectionState.PLAY, PacketDirection.CLIENTBOUND, "LevelChunkWithLight", LevelChunkWithLightPacket.class);
         register(45, ConnectionState.PLAY, PacketDirection.CLIENTBOUND, "WorldEvent", WorldEventPacket.class);
@@ -90,6 +93,7 @@ public class PacketRegistry {
         register(60, ConnectionState.PLAY, PacketDirection.SERVERBOUND, "SwingArm", SwingArmPacket.class);
         register(62, ConnectionState.PLAY, PacketDirection.CLIENTBOUND, "PlayerAbilities", PlayerAbilitiesPacket.class);
         register(63, ConnectionState.PLAY, PacketDirection.SERVERBOUND, "UseItemOn", UseItemOnPacket.class);
+        register(64, ConnectionState.PLAY, PacketDirection.SERVERBOUND, "UseItem", UseItemPacket.class);
         register(66, ConnectionState.PLAY, PacketDirection.CLIENTBOUND, "PlayerCombatKill", CombatDeathPacket.class);
         register(67, ConnectionState.PLAY, PacketDirection.CLIENTBOUND, "PlayerInfoRemove", PlayerInfoRemovePacket.class);
         register(68, ConnectionState.PLAY, PacketDirection.CLIENTBOUND, "PlayerInfoUpdate", PlayerInfoUpdatePacket.class);

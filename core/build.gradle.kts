@@ -3,6 +3,11 @@ plugins {
     id("com.gradleup.shadow")
 }
 
+repositories {
+    mavenCentral()
+    maven("https://repo.spongepowered.org/repository/maven-public/")
+}
+
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(25))
@@ -20,6 +25,7 @@ tasks.shadowJar {
     archiveBaseName.set("HyCraft")
     archiveVersion.set(version.toString())
     archiveClassifier.set("")
+    mergeServiceFiles()
 }
 
 dependencies {
@@ -28,6 +34,10 @@ dependencies {
     compileOnly("org.projectlombok:lombok:1.18.42")
     annotationProcessor("org.projectlombok:lombok:1.18.42")
 
-    val getHytaleServerJar = rootProject.ext["getHytaleServerJar"] as () -> String
-    compileOnly(files(getHytaleServerJar()))
+    compileOnly("com.hypixel.hytale:Server:2026.02.19-1a311a592")
+
+    compileOnly(libs.mixin)
+    compileOnly(libs.mixinextras)
+    annotationProcessor(libs.mixin)
+    annotationProcessor(libs.mixinextras)
 }

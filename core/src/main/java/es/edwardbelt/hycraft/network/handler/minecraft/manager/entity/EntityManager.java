@@ -277,6 +277,10 @@ public class EntityManager {
 
                     for (EntityStatUpdate statUpdate : healthUpdates) {
                         switch (statUpdate.op) {
+                            case Remove, Add -> {
+                                HurtAnimationPacket hurtPacket = new HurtAnimationPacket(entityId, 0);
+                                connection.getChannel().writeAndFlush(hurtPacket);
+                            }
                             case Reset -> {
                                 entity.setHealth(100);
                                 entity.despawn(connection);
