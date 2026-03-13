@@ -400,7 +400,7 @@ public class EntityManager {
 
             Map<String, String> interactionVars = item != null ? item.getInteractionVars() : new HashMap<>();
 
-            String interactionId = item != null ? item.getInteractions().get(InteractionType.Primary) : "*Empty_Interactions_Primary";
+            String interactionId = item != null ? item.getInteractions().get(InteractionType.Primary) : "Unarmed_Attack";
             if (interactionId == null) return;
 
             RootInteraction rootInteraction = RootInteraction.getAssetMap().getAsset(interactionId);
